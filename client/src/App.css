@@ -1,0 +1,61 @@
+.App {
+    width: 100vw;
+    height: auto;
+    display:flex;
+    align-items: center;  
+    flex-direction: column;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .item {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    border: 1px solid lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+  
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  
+  .item:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+  }
+  
+  .item .title {
+    flex: 20%;
+    border-bottom: 1px solid lightgray;
+    background-color: dodgerblue;
+    display: grid;
+    place-content: center;
+    color: white;
+    
+  }
+  
+  .item .description {
+    flex: 40%;
+    display: grid;
+    place-content: center;
+  }
+  
+  .item .photo {
+    flex: 20%;
+    border-top: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    background-color:coral;
+    place-content: center;
+    color: white;
+    
+  }
+  .item .price {
+    background-color: green;
+  }
