@@ -1,0 +1,20 @@
+
+get http://localhost:3002/items
+content-Type: application/json
+
+
+###
+
+post http://localhost:3002/items
+content-Type: application/json
+
+{
+    "title":"snowshoes",
+    "description":"good brand",
+    "userName": "Kolia",
+    "price": 10,
+    "photo": "snowshoes's photo"
+    
+}
+###
+
