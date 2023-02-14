@@ -9,11 +9,11 @@ post http://localhost:3002/items
 content-Type: application/json
 
 {
-    "title":"snowshoes",
-    "description":"good brand",
-    "userName": "Kolia",
-    "price": 10,
-    "photo": "snowshoes's photo"
+    "title":"becycle",
+    "description":"16 inc wheels",
+    "userName": "Sonia",
+    "price": 5,
+    "photo": "becycle's photo"
     
 }
 ###

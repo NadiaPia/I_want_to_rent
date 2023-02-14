@@ -21,7 +21,7 @@ function Home() {
         <div className="Items">
             {listOfItems.map((value, key) => {
             return (
-                <div className="item" key={key} >                              
+                <div className="item" key={key} onClick={() => {navigate(`/items/${value.id}`)}}>                              
                     <div className="id"> id:{value.id} </div>
                     <div className="photo"> {value.photo.type} </div>
                     <div className="title"> {value.title} </div>
