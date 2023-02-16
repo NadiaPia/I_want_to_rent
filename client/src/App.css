@@ -135,5 +135,35 @@ span {
 
 }
 
+/*individual item*/
+
+.itemPage {
+  display: flex;
+  background-color: aqua;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.leftSide {
+  flex: 50%;
+  height: calc(100vh - 70px);
+  background-color: cadetblue;
+  display: grid;
+  place-items: center;
+}
+
+.rightSide {
+  background-color: chocolate;
+  flex: 50%;
+  height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
 
 
