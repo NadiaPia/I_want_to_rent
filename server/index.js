@@ -11,6 +11,9 @@ const db = require("./models");
 const itemRouter = require("./routes/Items");
 app.use("/items", itemRouter);
 
+const commentsRouter = require("./routes/Comments");
+app.use("/comments", commentsRouter);
+
 db.sequelize.sync().then(() => {
     app.listen(3002, () => {
         console.log("Server is running on a port 3002");
