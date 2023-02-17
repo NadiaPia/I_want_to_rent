@@ -34,3 +34,24 @@ content-Type: application/json
     "ItemId": 5       
 }
 
+### Registration
+
+
+post http://localhost:3002/auth
+content-Type: application/json
+
+{
+    "userName":"Nadia",
+    "password": "123456"
+}
+
+### Login
+
+post http://localhost:3002/auth/login
+content-Type: application/json
+
+{
+    "userName":"Nadia",
+    "password": "123456"
+}
+

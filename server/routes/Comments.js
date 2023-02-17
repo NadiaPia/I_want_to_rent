@@ -4,8 +4,6 @@ const { Comments } = require("../models");
 
 //     "/comments" = "/"
 
-
-
 router.get("/:itemId", async (req, res) => {
     const itemId = req.params.itemId;
     const comments = await Comments.findAll({where: {ItemId: itemId}}) //find by primary key, that is id in column in db. This is the method of the sequilize
