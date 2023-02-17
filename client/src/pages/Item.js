@@ -29,6 +29,7 @@ function Item() {
           //const commentToAdd = { commentBody: newComment} // We use commentBody key here to make the same data scructure that we await in thr rendering of comments section
           //setComments([...comments, commentToAdd]) //here we don't wait for the server's response and add comment right away from the input -> newComment state
           setComments([...comments, response.data]) //here we use the comment that returned from the server
+          setNewComment("") //to make an input field empty after add new comment
 
         })
     }
@@ -50,7 +51,7 @@ function Item() {
             placeholder='Comment...' 
             autoComplete="off"
             value={newComment}
-           onChange={(event) => {setNewComment(event.target.value)}}
+            onChange={(event) => {setNewComment(event.target.value)}}
 
           />
           <button onClick={addComment}>Add Comment</button>
@@ -66,6 +67,6 @@ function Item() {
       
     </div>
   )
-}
+};
 
-export default Item
+export default Item;
