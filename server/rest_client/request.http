@@ -41,8 +41,8 @@ post http://localhost:3002/auth
 content-Type: application/json
 
 {
-    "userName":"Nadia",
-    "password": "123456"
+    "userName":"Olivia",
+    "password": "korova"
 }
 
 ### Login
@@ -51,7 +51,7 @@ post http://localhost:3002/auth/login
 content-Type: application/json
 
 {
-    "userName":"Nadia",
-    "password": "123456"
+    "userName":"Oliv",
+    "password": "korova"
 }
 

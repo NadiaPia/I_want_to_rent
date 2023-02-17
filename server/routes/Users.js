@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
         if(!match) {
             res.json({error: "Wrong Username and Password combination"})
         }
-        res.json("YUO LOGED IN!!!")
+        res.json("YOU LOGED IN!!!")
     })
 })
 
