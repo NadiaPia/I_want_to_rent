@@ -1,4 +1,5 @@
 const express = require("express");
+const { validateToken } = require("../middlewares/AuthMiddlewares");
 const router = express.Router();
 const { Comments } = require("../models");
 
@@ -10,7 +11,7 @@ router.get("/:itemId", async (req, res) => {
     res.json(comments);
 })
 
-router.post("/", async(req, res) => {
+router.post("/", validateToken, async(req, res) => {
     const newComment = req.body;
     await Comments.create(newComment)    //this is the sequelize function .create
     res.json(newComment)

@@ -24,7 +24,7 @@ function Item() {
     }, [])
       
     const addComment = () => {
-      axios.post("http://localhost:3002/comments", {commentBody: newComment, PostId: id})
+      axios.post("http://localhost:3002/comments", {commentBody: newComment, ItemId: id}, {headers: {accessToken: localStorage.getItem("accessTokenn")}})
         .then((response) => {
           //const commentToAdd = { commentBody: newComment} // We use commentBody key here to make the same data scructure that we await in thr rendering of comments section
           //setComments([...comments, commentToAdd]) //here we don't wait for the server's response and add comment right away from the input -> newComment state
