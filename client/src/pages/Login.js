@@ -11,7 +11,12 @@ function Login() {
     const login = () => {
         const data = {userName: userName, password: password};
         axios.post("http://localhost:3002/auth/login", data ).then((response) => {
-            console.log(response.data)               //we have to use response.data as it contain messages about arrors
+            if(response.data.error) { //we have to use response.data as it contain messages about arrors
+              alert(response.data.error)
+            } else {
+              localStorage.setItem("accessTokenn", response.data)
+            }   
+            
         })
     }
 
