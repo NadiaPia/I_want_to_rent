@@ -26,11 +26,18 @@ function Item() {
     const addComment = () => {
       axios.post("http://localhost:3002/comments", {commentBody: newComment, ItemId: id}, {headers: {accessToken: localStorage.getItem("accessTokenn")}})
         .then((response) => {
-          //const commentToAdd = { commentBody: newComment} // We use commentBody key here to make the same data scructure that we await in thr rendering of comments section
-          //setComments([...comments, commentToAdd]) //here we don't wait for the server's response and add comment right away from the input -> newComment state
-          setComments([...comments, response.data]) //here we use the comment that returned from the server
-          setNewComment("") //to make an input field empty after add new comment
-
+          if (response.data.error) {
+            alert (response.data.error)
+          } else {
+            //const commentToAdd = { 
+              //commentBody: newComment, 
+              //userName: response.data.userName
+            //} // We use commentBody key here to make the same data structure that we await in the rendering of comments section
+            console.log("response.dataresponse.dataresponse.data", response.data)
+            //setComments([...comments, commentToAdd]) //here we don't wait for the server's response and add comment right away from the input -> newComment state
+            setComments([...comments, response.data]) //here we use the comment that returned from the server
+            setNewComment("") //to make an input field empty after add new comment            
+          };
         })
     }
   return (
@@ -59,7 +66,10 @@ function Item() {
         </div>
         <div className="ListOfComments">
           {comments.map((comment, key) => {
-            return <div key={key} className="comment">{comment.commentBody}</div> /*comment - array of objects => render the text of the comment we can only via the comment.commentBody*/
+            return <div key={key} className="comment">
+              {comment.commentBody}
+              <label>Username{comment.userName}</label>
+            </div> /*comment - array of objects => render the text of the comment we can only via the comment.commentBody*/
 
           })}
         </div>

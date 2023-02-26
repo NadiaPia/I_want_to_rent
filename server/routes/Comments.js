@@ -12,7 +12,9 @@ router.get("/:itemId", async (req, res) => {
 })
 
 router.post("/", validateToken, async(req, res) => {
-    const newComment = req.body;
+    const newComment = req.body;      // { commentBody: 'ddddddddd', ItemId: '7' }   
+    const userName = req.user.userName;
+    newComment.userName = userName;  // we pushe a userName to the newComment{ commentBody: 'ddddddddd', ItemId: '7', userName: 'Tania' }   
     await Comments.create(newComment)    //this is the sequelize function .create
     res.json(newComment)
 })
