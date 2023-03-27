@@ -33,6 +33,11 @@ content-Type: application/json
     "commentBody":"What a price?",
     "ItemId": 5       
 }
+###
+delete http://localhost:3002/comments/12
+content-Type: application/json
+
+
 
 ### Registration
 

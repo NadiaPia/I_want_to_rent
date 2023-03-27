@@ -18,4 +18,14 @@ router.post("/", validateToken, async(req, res) => {
     await Comments.create(newComment)    //this is the sequelize function .create
     res.json(newComment)
 })
+
+router.delete("/:commentId", validateToken, async(req, res) => {
+    const commentId = req.params.commentId;
+    await Comments.destroy({
+        where: {
+            id: commentId,
+        },
+    })
+    res.json("DELETED SUCCESFULLY")
+})
 module.exports = router;

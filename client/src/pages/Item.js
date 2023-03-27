@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from 'react-router-dom';
-
+import { AuthContext } from '../helpers/AuthContext';
 
 function Item() {
 
@@ -10,6 +10,7 @@ function Item() {
     const [itemObject, setItemObject] = useState({});
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]); //should be an array as later we will use it to .map that is used only for arrays
+    const {authState} = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`http://localhost:3002/items/${id}`).then((response) => {
@@ -40,6 +41,17 @@ function Item() {
           };
         })
     }
+
+    const deleteComment = (id) => {
+      axios.delete(`http://localhost:3002/comments/${id}`, 
+      {headers: {accessToken: localStorage.getItem("accessTokenn")}})
+      . then(() => {
+        setComments(comments.filter((val) => {
+          return val.id !== id
+        }))
+      })
+    }
+    
   return (
     <div className="itemPage">
       <div className="leftSide">
@@ -69,7 +81,7 @@ function Item() {
             return <div key={key} className="comment">
               {comment.commentBody}
               <label>Username{comment.userName}</label>
-              <button>delete</button>
+              {authState.userName === comment.userName && <button onClick={() => {deleteComment(comment.id)}}>delete</button>} {/*we know the "comment.id" from the comment(map) and we pass it as an argument to this function */}
             </div> /*comment - array of objects => render the text of the comment we can only via the comment.commentBody*/
 
           })}
