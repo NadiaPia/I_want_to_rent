@@ -49,7 +49,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="LogedInContainer">
+            <div className="loggedInContainer">
               <h1>{authState.userName}</h1>
               <button onClick={logout}>logout</button>
             </div>

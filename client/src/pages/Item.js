@@ -69,6 +69,7 @@ function Item() {
             return <div key={key} className="comment">
               {comment.commentBody}
               <label>Username{comment.userName}</label>
+              <button>delete</button>
             </div> /*comment - array of objects => render the text of the comment we can only via the comment.commentBody*/
 
           })}
