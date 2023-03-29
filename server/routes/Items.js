@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { Items } = require("../models");
+const {validateToken} = require("../middlewares/AuthMiddlewares");
+
 
 //     "/items" = "/"
 
@@ -9,8 +11,10 @@ router.get("/", async(req, res) => {
     res.json(lisOfItems)
 })
 
-router.post("/", async(req, res) => {
-    const newItem = req.body;
+router.post("/", validateToken, async(req, res) => {
+    const newItem = req.body;  //item.title; item.item;  //item.userNAme -  we don't have it in req.body any more 
+    newItem.userName = req.user.userName;
+    newItem.userId = req.user.id
     await Items.create(newItem)    //this is the sequelize function .create
     res.json(newItem)
 })

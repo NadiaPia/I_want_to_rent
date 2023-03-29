@@ -12,27 +12,24 @@ function CreateItem() {
 
   const { authState, setAuthState } = useContext(AuthContext);
 
-
   const initialValues = {
     title: "",
     description: "",
-    userName: "",
     price: 0,
     photo: ""
-
   };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required(),
     description: Yup.string().required(),
-    userName: Yup.string().min(3).max(15).required("name is a required field"),
     price: Yup.number().required(),
     photo: Yup.string().required(),
   })
 
+  //data is collected in Formik
   const onSubmit = (data) => {
 
-    axios.post("http://localhost:3002/items", data).then((response) => {
+    axios.post("http://localhost:3002/items", data, {headers: {accessToken: localStorage.getItem("accessTokenn")}}).then((response) => {
       navigate("/")
     })
   }
@@ -68,17 +65,7 @@ function CreateItem() {
             id="inputCteateItem"
             name="description"
             placeholder="description..."
-          />
-
-          <label>username</label>
-          <ErrorMessage name="userName" component="span" />
-          <Field
-            autoComplete="off"
-            id="inputCteateItem"
-            name="userName"
-            placeholder="username..."
-
-          />
+          />         
 
           <label>price</label>
           <ErrorMessage name="price" component="span" />

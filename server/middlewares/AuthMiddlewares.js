@@ -6,6 +6,7 @@ const validateToken = (req, res, next) => {
 
     try {
         const validToken = verify(accessToken, "importantsecret");
+        //console.log("validTokenvalidTokenvalidTokenvalidToken", validToken)  //{ userName: 'Tolia', id: 16, iat: 1677658248 }
         req.user = validToken;
         if(validToken) {            
             return next();
