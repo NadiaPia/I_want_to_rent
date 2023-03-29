@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PageNotFound from './pages/PageNotFound';
 
 
 function App() {
@@ -61,6 +62,8 @@ function App() {
             <Route path="/items/:id" exact element={<Item />} />
             <Route path="/registration" exact element={<Registration />} />
             <Route path="/login" exact element={<Login />} />
+            <Route path="*" exact element={<PageNotFound />} />
+
           </Routes>
 
         </Router>
