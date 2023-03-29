@@ -10,9 +10,7 @@ import { AuthContext } from "../helpers/AuthContext";
 function Home() {
 
     const [listOfItems, setListOfItems] = useState([]);
-    const {authState, setAuthState} = useContext(AuthContext)
-
-
+    const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
