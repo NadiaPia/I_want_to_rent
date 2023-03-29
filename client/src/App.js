@@ -13,6 +13,7 @@ import PageNotFound from './pages/PageNotFound';
 
 function App() {
 
+
   //const [authState, setAuthState] = useState(false);// as it false by default it will show Login and Password after refresh the page despite the fact we've logged in. To avoid this we need check whether we've logged in right away after rerender(refresh the page) and if so, make authState is to be true. Looks like useEffect:
     const [authState, setAuthState] = useState({userName: "", id: 0, status: false})
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
   const logout = () => {
     localStorage.removeItem("accessTokenn"); //we removed the Tokent> BUT!!!! it will not show any chages in our navbar: logout button will not be replaced with the Login/registration => we need change our state:
     setAuthState({userName: "", id: 0, status: false}); //it will rerender the page
+   
   }
 
   return (
@@ -52,7 +54,7 @@ function App() {
             </div>
             <div className="loggedInContainer">
               <h1>{authState.userName}</h1>
-              <button onClick={logout}>logout</button>
+              {authState.status && <button onClick={logout}>logout</button>}
             </div>
           </div>
 
