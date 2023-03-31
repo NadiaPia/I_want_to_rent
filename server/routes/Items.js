@@ -25,4 +25,14 @@ router.get("/:id", async (req, res) => {
     res.json(item);
 })
 
+router.delete("/:itemId", validateToken, async (req, res) => {
+    const itemId = req.params.itemId;
+    await Items.destroy({
+        where: {
+            id: itemId
+        }
+    })
+    res.json("DELETED SUCCESFULLY")
+})
+
 module.exports = router;

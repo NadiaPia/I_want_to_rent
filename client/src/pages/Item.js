@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState, useContext } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams,  useNavigate } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
 
 function Item() {
@@ -11,6 +11,8 @@ function Item() {
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]); //should be an array as later we will use it to .map that is used only for arrays
     const {authState} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         axios.get(`http://localhost:3002/items/${id}`).then((response) => {
@@ -51,6 +53,14 @@ function Item() {
         }))
       })
     }
+
+    const deleteItem = (id) => {
+      axios.delete(`http://localhost:3002/items/${id}`,
+      {headers: {accessToken: localStorage.getItem("accessTokenn")}})
+      . then(() => {
+        navigate("/")
+      })
+    }
     
   return (
     <div className="itemPage">
@@ -58,9 +68,12 @@ function Item() {
         <div className="item" id="idividual">
           <div className="title">{itemObject.title}</div>
           <div className="description">{itemObject.description}</div>
-          <div className="username">{itemObject.userName}</div>
           <div className="price">{itemObject.price}</div>
           <div className="photo">{itemObject.photo?.type}</div>  {/*? is because of the second level of the key.*/}
+          <div className="username">
+            {itemObject.userName}
+            {authState.userName === itemObject.userName && (<button onClick={() => deleteItem(itemObject.id)}>delete</button>)}  {/*only the owner of the post are able to see a delete button */}
+          </div>
         </div>
       </div>
       <div className="rightSide">
