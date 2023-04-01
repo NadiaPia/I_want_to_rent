@@ -6,7 +6,7 @@ import { AuthContext } from '../helpers/AuthContext';
 
 function Item() {
 
-    let { id } = useParams();
+    let { id } = useParams(); //let id = useParams().id ////now, in the Browser, we know the exact number that goes after "profile/" in the url (localhost:3000/items/4)
     const [itemObject, setItemObject] = useState({});
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]); //should be an array as later we will use it to .map that is used only for arrays
