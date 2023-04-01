@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 
 
@@ -44,7 +44,7 @@ function Home() {
                     <div className="title"> {value.title} </div>
                     <div className="price"> {value.price}$ </div>
                     <div className="description"> {value.description} </div>
-                    <div className="username"> {value.userName} </div>
+                    <div className="username"> <Link to={`/profile/${value.UserId}`}>{value.userName}</Link> </div>
                 </div>
             );
             })}
