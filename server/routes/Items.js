@@ -9,12 +9,18 @@ const {validateToken} = require("../middlewares/AuthMiddlewares");
 router.get("/", async(req, res) => {
     const lisOfItems = await Items.findAll()
     res.json(lisOfItems)
-})
+});
+
+router.get("/byuserId/:id", async(req, res) => {
+    const id = req.params.id;
+    const listOfItems = await Items.findAll({where: {UserId: id}});
+    res.json(listOfItems)
+   })
 
 router.post("/", validateToken, async(req, res) => {
-    const newItem = req.body;  //item.title; item.item;  //item.userNAme -  we don't have it in req.body any more 
+    const newItem = req.body;  //item.title; item.item;  //item.userName -  we don't have it in req.body any more 
     newItem.userName = req.user.userName;
-    newItem.userId = req.user.id
+    newItem.UserId = req.user.id //UserId - the same spelling as in the models
     await Items.create(newItem)    //this is the sequelize function .create
     res.json(newItem)
 })
