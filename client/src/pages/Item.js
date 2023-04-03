@@ -61,13 +61,40 @@ function Item() {
         navigate("/")
       })
     }
+
+    const editItem = (options) => {
+      if (options === "title") {
+        let newTitle = prompt("enter New Title") //when click on the title, the alert window pop up
+        axios.put(`http://localhost:3002/items/title`, {
+          newTitle: newTitle,
+          id: id
+        },
+        {
+          headers: {accessToken: localStorage.getItem("accessTokenn")}
+        }
+        );
+        setItemObject({...itemObject, title: newTitle})
+      } else {
+        let newDescription = prompt("Enter New Description");
+        axios.put(`http://localhost:3002/items/description`, {
+          newDescription: newDescription,
+          id: id
+        },
+        {
+          headers: {accessToken: localStorage.getItem("accessTokenn")}
+        }
+        );
+        setItemObject({...itemObject, description: newDescription})
+      }
+
+    }
     
   return (
     <div className="itemPage">
       <div className="leftSide">
         <div className="item" id="idividual">
-          <div className="title">{itemObject.title}</div>
-          <div className="description">{itemObject.description}</div>
+          <div className="title" onClick={() => {if(authState.userName === itemObject.userName) {editItem("title")}}}>{itemObject.title}</div>
+          <div className="description" onClick={() => {if(authState.userName === itemObject.userName) {editItem("description")}}}>{itemObject.description}</div>
           <div className="price">{itemObject.price}</div>
           <div className="photo">{itemObject.photo?.type}</div>  {/*? is because of the second level of the key.*/}
           <div className="username">

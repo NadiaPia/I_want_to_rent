@@ -41,4 +41,16 @@ router.delete("/:itemId", validateToken, async (req, res) => {
     res.json("DELETED SUCCESFULLY")
 })
 
+router.put("/title", validateToken, async (req, res) => {
+    const { newTitle, id } = req.body;
+    await Items.update({title: newTitle}, {where: {id: id}});
+    res.json(newTitle)
+});
+
+router.put("/description", validateToken, async(req, res) => {
+    const { newDescription, id } = req.body;
+    await Items.update({description: newDescription}, {where: {id: id}});
+    res.json(newDescription)
+
+})
 module.exports = router;
