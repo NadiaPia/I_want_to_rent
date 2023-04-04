@@ -5,8 +5,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 
 
-
-
 function Home() {
 
     const [listOfItems, setListOfItems] = useState([]);
@@ -29,7 +27,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        if(!authState.status) {
+        if(!authState.status && !localStorage.getItem("accessTokenn")) {
             navigate("/login")
         }
     }, [authState.status])   //when click on logout button from the Home page, we go authomatically to the login page only if authState.status chanches
@@ -38,19 +36,25 @@ function Home() {
         <div className="Items">
             {listOfItems.map((value, key) => {
             return (
-                <div className="item" key={key} onClick={() => {navigate(`/items/${value.id}`)}}>                              
+                <div className="item" key={key}> 
                     <div className="id"> id:{value.id} </div>
-                    <div className="photo"> {value.photo.type} </div>
+                    <div className="photo" onClick={() => {navigate(`/items/${value.id}`)}}> {value.photo.type} </div>
                     <div className="title"> {value.title} </div>
                     <div className="price"> {value.price}$ </div>
-                    <div className="description"> {value.description} </div>
-                    <div className="username"> <Link to={`/profile/${value.UserId}`}>{value.userName}</Link> </div>
-                </div>
+                    <div className="description" > {value.description} </div>
+                    {/* <div className="username" onClick={(e) => {e.stopPropagation()}}> <Link to={`/profile/${value.UserId}`}>{value.userName}</Link> </div> */}
+                    <div className="footer">
+                        <div className="username">
+                            <Link to={`/profile/${value.UserId}`}>{value.userName}</Link>
+                        </div>
+                    </div>
+                </div>              
+                
             );
             })}
         </div>
     )
 }
 
-export default Home
+export default Home;
 
